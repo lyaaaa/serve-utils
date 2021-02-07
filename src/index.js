@@ -52,7 +52,7 @@ app.post('/compress', upload.single('compress'), function (req, res) {
   exec(cli, function (err, stdout, stderr) {
     if (err) {
       res.send({
-        msg: '压缩失败',
+        msg: 'squoosh 压缩失败',
         err,
       })
     } else {
@@ -83,7 +83,7 @@ app.post('/compressByImagemin', async function (req, res) {
       imageBuffer,
     })
   } catch (err) {
-    console.log('err', err)
+    console.log('Imagemin err', err)
     res.send({
       msg: '压缩失败',
       err,

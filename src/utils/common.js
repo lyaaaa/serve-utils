@@ -25,7 +25,7 @@ const bufferImageToFile = (buffer, fileName) => {
   const filePath = path.join(COMPRESS_IMG_PATH, fileName)
   fs.writeFile(filePath, buffer, function (err) {
     if (err) {
-      console.log('err', err)
+      console.log('写入失败', err, filePath)
     } else {
       console.log('写入成功')
     }
