@@ -2,7 +2,14 @@ const express = require('express')
 const router = express.Router()
 const { ORIGINAL_IMG_PATH } = require('../config')
 const { execSync } = require('child_process')
-const { getBufferFromFile, bufferImageToFile, convertSize, getCompressSize, successRes, errorRes } = require('../utils/common')
+const {
+  getBufferFromFile,
+  bufferImageToFile,
+  convertSize,
+  getCompressSize,
+  successRes,
+  errorRes,
+} = require('../utils/common')
 const { getSquooshCli } = require('../utils/cli')
 const multer = require('multer')
 const imagemin = require('imagemin')
@@ -39,7 +46,7 @@ async function compressImage(file, type) {
     return {
       type: 'success',
       originalSize: convertSize(size),
-      compressSize: getCompressSize(compressFileName)
+      compressSize: getCompressSize(compressFileName),
     }
   } catch (err) {
     return Promise.reject(err.message)
