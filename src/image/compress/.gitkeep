@@ -1,7 +1,0 @@
-# .gitignore
-
-# ignore all files in compress
-*
-
-# except for .gitkeep
-!.gitkeep

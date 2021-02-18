@@ -21,3 +21,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# ignore all files in compress
+/src/image/*
+
+# except for .gitkeep
+!.gitkeep
