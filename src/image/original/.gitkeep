@@ -1,0 +1,7 @@
+# .gitignore
+
+# ignore all files in original
+original/*
+
+# except for .gitkeep
+!.gitkeep
