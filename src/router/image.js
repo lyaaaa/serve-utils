@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { ORIGINAL_IMG_PATH, COMPRESS_IMG_PATH } = require('../config')
+const { ORIGINAL_IMG_PATH, COMPRESS_IMG_PATH, QI_NIU_CONFIG } = require('../config')
 const { execSync } = require('child_process')
 const path = require('path')
 const {
@@ -41,8 +41,13 @@ function handleCompressFile(file, type) {
   }
 }
 
-// 压缩图片
-async function compressImage(file, type) {
+/**
+ * 压缩图片并上传图片到七牛
+ * @param {object} file 上传内容
+ * @param {string} type 压缩类型
+ * @param {Object} qiniuConf 上传七牛参数
+ */
+async function compressImage(file, type, qiniuConf) {
   const { path: filePath, size } = file
   // 压缩后的文件名
   const { fileName, extname } = handleCompressFile(file, type)
@@ -65,13 +70,13 @@ async function compressImage(file, type) {
       execSync(cli)
     }
     // 压缩成功后上传图片到七牛
-    const url = await uploadImageToQiniu(path.join(COMPRESS_IMG_PATH, fileName))
+    const url = await uploadImageToQiniu(path.join(COMPRESS_IMG_PATH, fileName), qiniuConf)
     // 读取压缩后文件大小
     return {
       type: 'success',
       originalSize: convertSize(size),
       compressSize: getCompressSize(fileName),
-      url
+      url,
     }
   } catch (err) {
     return Promise.reject(err.message)
@@ -82,8 +87,9 @@ async function compressImage(file, type) {
 router.post('/upload', async function (req, res) {
   try {
     const { filename } = req.files[0]
+    const { qiniuConf = JSON.stringify(QI_NIU_CONFIG) } = req.body
     const filePath = path.join(ORIGINAL_IMG_PATH, filename)
-    const url = await uploadImageToQiniu(filePath)
+    const url = await uploadImageToQiniu(filePath, JSON.parse(qiniuConf))
     res.send(
       successRes({
         url,
@@ -95,10 +101,10 @@ router.post('/upload', async function (req, res) {
 })
 
 router.post('/compress', async function (req, res) {
-  const { type = 'imagemin' } = req.body
+  const { type = 'imagemin', qiniuConf = JSON.stringify(QI_NIU_CONFIG) } = req.body
 
   try {
-    const data = await compressImage(req.files[0], type)
+    const data = await compressImage(req.files[0], type, JSON.parse(qiniuConf))
     res.send(successRes(data))
   } catch (err) {
     res.send(errorRes(`压缩失败: ${err}`))
