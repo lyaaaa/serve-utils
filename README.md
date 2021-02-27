@@ -28,7 +28,7 @@
     "url": "xxxx"
   },
   "status": {
-    "RetCode": 0,
+    "code": 0,
     "msg": "成功"
   }
 }
@@ -67,7 +67,7 @@
     "url": "xxx"
   },
   "status": {
-    "RetCode": 0,
+    "code": 0,
     "msg": "成功"
   }
 }

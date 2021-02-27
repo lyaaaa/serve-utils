@@ -23,7 +23,8 @@ yarn-error.log*
 *.sw?
 
 # ignore all files in compress
-/src/image/*
+/src/image/compress/*
+/src/image/original/*
 
 # except for .gitkeep
 !.gitkeep

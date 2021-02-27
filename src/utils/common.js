@@ -5,7 +5,7 @@ const { COMPRESS_IMG_PATH } = require('../config')
 // 成功返回
 const successRes = (data) => {
   return {
-    status: { RetCode: 0, msg: '成功' },
+    status: { code: 0, msg: '成功' },
     data,
   }
 }
@@ -13,7 +13,7 @@ const successRes = (data) => {
 // 失败返回
 const errorRes = (msg) => {
   return {
-    status: { RetCode: 1, msg },
+    status: { code: 1, msg },
   }
 }
 
@@ -45,13 +45,13 @@ const bufferImageToFile = (buffer, fileName) => {
 const convertSize = (size) => {
   let resSize = ''
   if (size < 1024) {
-    resSize = size.toFixed(2) + "B"
+    resSize = size.toFixed(2) + 'B'
   } else if (size < 1024 * 1024) {
-    resSize = (size / 1024).toFixed(2) + "KB"
+    resSize = (size / 1024).toFixed(2) + 'KB'
   } else if (size < 1024 * 1024 * 1024) {
-    resSize = (size / (1024 * 1024)).toFixed(2) + "MB"
+    resSize = (size / (1024 * 1024)).toFixed(2) + 'MB'
   } else {
-    resSize = (limit / (1024 * 1024 * 1024)).toFixed(2) + "GB"
+    resSize = (limit / (1024 * 1024 * 1024)).toFixed(2) + 'GB'
   }
   return resSize
 }
@@ -69,5 +69,5 @@ module.exports = {
   getBufferFromFile,
   bufferImageToFile,
   convertSize,
-  getCompressSize
+  getCompressSize,
 }

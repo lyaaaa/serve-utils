@@ -79,7 +79,8 @@ async function compressImage(file, type, qiniuConf) {
       url,
     }
   } catch (err) {
-    return Promise.reject(err.message)
+    const message = err.message ? err.message : err
+    return Promise.reject(message)
   }
 }
 
@@ -107,6 +108,7 @@ router.post('/compress', async function (req, res) {
     const data = await compressImage(req.files[0], type, JSON.parse(qiniuConf))
     res.send(successRes(data))
   } catch (err) {
+    console.log('err', err)
     res.send(errorRes(`压缩失败: ${err}`))
   }
 })
