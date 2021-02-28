@@ -28,3 +28,5 @@ yarn-error.log*
 
 # except for .gitkeep
 !.gitkeep
+
+/src/mysqlConf.js
