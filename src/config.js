@@ -1,4 +1,6 @@
 const path = require('path')
+const { MYSQL_CONF } = require('./mysqlConf')
+
 // 压缩图片的存储路径
 const COMPRESS_IMG_PATH = path.resolve(__dirname, './image/compress/')
 // 原始图片的存储路径
@@ -16,4 +18,5 @@ module.exports = {
   COMPRESS_IMG_PATH,
   ORIGINAL_IMG_PATH,
   QI_NIU_CONFIG,
+  MYSQL_CONF
 }
