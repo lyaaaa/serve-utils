@@ -3,6 +3,7 @@ node_modules
 /dist
 package-lock.json
 yarn.lock
+/src/mysqlConf.js
 
 # local env files
 .env.local
@@ -28,5 +29,3 @@ yarn-error.log*
 
 # except for .gitkeep
 !.gitkeep
-
-/src/mysqlConf.js
