@@ -15,7 +15,7 @@ if (env === 'dev') {
     user: '',
     password: '',
     port: '',
-    database: 'q123',
+    database: '',
   }
 }
 
