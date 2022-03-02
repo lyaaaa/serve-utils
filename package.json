@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev node ./src/index.js",
+    "start": "node ./src/index.js",
     "pm2:start": "pm2 start ./src/index.js --name serve_utils",
     "pm2:restart": "pm2 restart serve_utils"
   },

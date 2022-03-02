@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    restart: always
+  backend:
+    container_name: serve_utils
+    restart: always
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - nginx

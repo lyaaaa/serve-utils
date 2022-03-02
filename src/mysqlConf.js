@@ -1,22 +1,9 @@
-const env = process.env.NODE_ENV // 环境参数
-
-let MYSQL_CONF
-if (env === 'dev') {
-  MYSQL_CONF = {
-    host: 'dev',
-    user: '',
-    password: '',
-    port: '',
-    database: '',
-  }
-} else if (env === 'production') {
-  MYSQL_CONF = {
-    host: '',
-    user: '',
-    password: '',
-    port: '',
-    database: '13123',
-  }
+let MYSQL_CONF = {
+  host: 'localhost',
+  user: 'root',
+  password: 'ly103512',
+  port: '3306',
+  database: 'myblog',
 }
 
 module.exports = {
